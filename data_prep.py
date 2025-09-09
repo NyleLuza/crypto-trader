@@ -4,7 +4,8 @@ import pandas as pd
 
 def combined_set(df, data):
     for i in range(len(data)):
-        df = pd.concat([df, data[i].head(n = data[i].size)])
+        after_drop = data[i].drop(columns = ["SNo"], axis=1)
+        df = pd.concat([df, after_drop.head(n = after_drop.size)])
     print(df.shape)
     return df
 
@@ -22,4 +23,4 @@ dataset_array = [bit_dataset, eth_dataset,
 main_dataset = pd.DataFrame()
 
 df = combined_set(main_dataset, dataset_array)
-print(df.head())
+print(df.tail(5))
