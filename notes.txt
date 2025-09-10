@@ -5,3 +5,5 @@
 Data Prep:
     - Needed to remove unnecessary information, such as Serial Number and Symbol
     - Some entries had a volume of 0 which doesn't make sense, so we had to remove them
+    - Calculate an average from High Low and Close to create a pivot point
+    - This gives us potential support and resistance levels
