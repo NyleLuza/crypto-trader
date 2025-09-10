@@ -1,0 +1,7 @@
+- Find Covariance of columns to see how changes correlate
+- apply principal component analysis to reduce number of features
+
+
+Data Prep:
+    - Needed to remove unnecessary information, such as Serial Number and Symbol
+    - Some entries had a volume of 0 which doesn't make sense, so we had to remove them

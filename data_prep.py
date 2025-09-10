@@ -4,9 +4,11 @@ import pandas as pd
 
 def combined_set(df, data):
     for i in range(len(data)):
-        after_drop = data[i].drop(columns = ["SNo"], axis=1)
+        after_drop = data[i].drop(columns = ["SNo", "Symbol"], axis=1)
+        filter = after_drop[after_drop["Volume"]!=0]
+        print(filter)
         df = pd.concat([df, after_drop.head(n = after_drop.size)])
-    print(df.shape)
+    #print(df.shape)
     return df
 
 
@@ -23,4 +25,5 @@ dataset_array = [bit_dataset, eth_dataset,
 main_dataset = pd.DataFrame()
 
 df = combined_set(main_dataset, dataset_array)
-print(df.tail(5))
+pd.set_option("display.max_columns", 9)
+#print(df.head())
