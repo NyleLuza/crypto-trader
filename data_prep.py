@@ -2,13 +2,18 @@ import kagglehub
 import pandas as pd
 
 
-def combined_set(data):
-    after_drop = data.drop(columns = ["SNo", "Symbol", "Name", "Date"], axis=1)
+def filter_cols(data):
+    after_drop = data.drop(columns = ["SNo", "Symbol", "Name", "Date", "Open"], axis=1)
     filter = after_drop[after_drop["Volume"]!=0]
     dropped_index = filter.reset_index(drop=True)
     return dropped_index
 
-
+def final_frame(data):
+    data["Mean"] = data[["High", "Low", "Close"]].mean(axis=1) # calc mean across columns
+    drop_cols = data.drop(columns = ["High", "Low", "Close"], axis = 1)
+    drop_cols = drop_cols[["Mean", "Volume", "Marketcap"]]
+    return drop_cols
+    
 # Download latest version
 path = kagglehub.dataset_download("sudalairajkumar/cryptocurrencypricehistory")
 # initalize datasets
@@ -20,6 +25,6 @@ doge_dataset = pd.read_csv(f"{path}/coin_Dogecoin.csv")
 
 
 
-df = combined_set(bit_dataset)
-
-print(df.head())
+df = filter_cols(bit_dataset)
+final_df = final_frame(df)
+print(final_df.head())
