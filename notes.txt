@@ -7,3 +7,4 @@ Data Prep:
     - Some entries had a volume of 0 which doesn't make sense, so we had to remove them
     - Calculate an average from High Low and Close to create a pivot point
     - This gives us potential support and resistance levels
+    - Calculationg mean is feature extraction because we're taking values from multiple columns and focusing it onto a singular point
